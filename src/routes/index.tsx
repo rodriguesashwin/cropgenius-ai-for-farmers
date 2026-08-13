@@ -2,19 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
-import { TrustStrip } from "@/components/landing/TrustStrip";
-import { WhyCropGenius } from "@/components/landing/WhyCropGenius";
+import { ImpactStrip } from "@/components/landing/ImpactStrip";
 import { Features } from "@/components/landing/Features";
+import { FarmerBenefits } from "@/components/landing/FarmerBenefits";
 import { SupportedCrops } from "@/components/landing/SupportedCrops";
-import { HowItWorks } from "@/components/landing/HowItWorks";
-import { TechnologySection } from "@/components/landing/TechnologySection";
-import { Benefits } from "@/components/landing/Benefits";
-import { CallToAction } from "@/components/landing/CallToAction";
+import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 
 const title = "CropGenius | AI-Powered Smart Agriculture for Indian Farmers";
 const description =
-  "CropGenius unites crop disease detection, price prediction, weather insights, market analysis and government scheme information for Indian farmers.";
+  "CropGenius brings agricultural guidance, crop health insights, weather information and market awareness together in one premium platform for Indian farmers.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,14 +33,11 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <TrustStrip />
-        <WhyCropGenius />
+        <ImpactStrip />
         <Features />
+        <FarmerBenefits />
         <SupportedCrops />
-        <HowItWorks />
-        <TechnologySection />
-        <Benefits />
-        <CallToAction />
+        <FinalCTA />
       </main>
       <Footer />
     </div>

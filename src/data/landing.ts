@@ -5,11 +5,6 @@ import {
   Landmark,
   MessageSquareText,
   TrendingUp,
-  Leaf,
-  Droplets,
-  IndianRupee,
-  FileQuestion,
-  HelpCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -29,85 +24,46 @@ export type NavItem = { label: string; href: string };
 export const navItems: NavItem[] = [
   { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
+  { label: "Benefits", href: "#benefits" },
   { label: "Crops", href: "#crops" },
-  { label: "Government Schemes", href: "#schemes" },
-  { label: "About", href: "#about" },
 ];
 
-export const trustPoints = [
-  { title: "AI-Powered", icon: Leaf },
-  { title: "Smart Farming", icon: TrendingUp },
-  { title: "Farmer Welfare", icon: Landmark },
-  { title: "Data-Driven Decisions", icon: LineChart },
-] satisfies { title: string; icon: LucideIcon }[];
-
-export const challenges = [
-  {
-    title: "Crop Diseases",
-    description:
-      "Diseases are often noticed late, which makes treatment harder and reduces yield.",
-    icon: Bug,
-  },
-  {
-    title: "Changing Weather",
-    description:
-      "Unpredictable rainfall and temperature shifts make planning sowing and irrigation difficult.",
-    icon: Droplets,
-  },
-  {
-    title: "Fluctuating Prices",
-    description:
-      "Market rates change frequently, making it hard to decide when and where to sell.",
-    icon: IndianRupee,
-  },
-  {
-    title: "Scheme Awareness",
-    description:
-      "Many agricultural schemes and subsidies remain unknown to the farmers they are meant for.",
-    icon: FileQuestion,
-  },
-  {
-    title: "Access to Guidance",
-    description:
-      "Reliable agronomic advice is not always available when a farming decision has to be made.",
-    icon: HelpCircle,
-  },
-] satisfies { title: string; description: string; icon: LucideIcon }[];
+export const impactStats = [
+  { value: 10, label: "Major Crops", prefix: "", suffix: "" },
+  { value: 12, label: "Targeted Diseases", prefix: "", suffix: "" },
+  { value: 7, label: "Weather Forecast", prefix: "", suffix: "-Day" },
+  { value: 1, label: "Unified Platform", prefix: "", suffix: "" },
+] satisfies { value: number; label: string; prefix: string; suffix: string }[];
 
 export const features = [
   {
-    title: "AI Crop Disease Detection",
-    description:
-      "Upload a crop leaf image and receive disease identification, treatment recommendations and prevention guidance.",
+    title: "Disease Detection",
+    description: "Identify crop disease from a leaf image.",
     icon: Bug,
   },
   {
-    title: "AI Crop Price Prediction",
-    description:
-      "Use agricultural market data and machine learning to estimate future crop prices.",
+    title: "Price Prediction",
+    description: "Estimate upcoming crop prices.",
     icon: TrendingUp,
   },
   {
-    title: "Smart Weather Forecasting",
-    description:
-      "Access current weather information, forecasts and farming-related alerts.",
+    title: "Weather Forecast",
+    description: "Field-level forecasts and alerts.",
     icon: CloudSun,
   },
   {
-    title: "Agricultural Market Analysis",
-    description: "Monitor crop prices, historical trends and market information.",
+    title: "Market Insights",
+    description: "Track mandi rates and trends.",
     icon: LineChart,
   },
   {
     title: "Government Schemes",
-    description:
-      "Discover agricultural schemes, subsidies, eligibility information and farmer welfare support.",
+    description: "Find subsidies and welfare support.",
     icon: Landmark,
   },
   {
     title: "AI Farmer Assistant",
-    description:
-      "Get agricultural guidance and answers to farming-related questions through an AI-powered assistant.",
+    description: "Ask farming questions, get answers.",
     icon: MessageSquareText,
   },
 ] satisfies { title: string; description: string; icon: LucideIcon }[];
@@ -142,54 +98,19 @@ export const crops: Crop[] = [
   },
 ];
 
-export const workflowSteps = [
-  {
-    step: "01",
-    title: "Farmer Provides Information",
-    description: "Crop details, location and a leaf image or question are submitted.",
-  },
-  {
-    step: "02",
-    title: "CropGenius Analyzes Data",
-    description: "Inputs are combined with weather, market and scheme data sources.",
-  },
-  {
-    step: "03",
-    title: "AI and Agricultural Services Generate Insights",
-    description: "Models and services process the data into clear agricultural guidance.",
-  },
-  {
-    step: "04",
-    title: "Farmer Makes Better Decisions",
-    description: "Recommendations support decisions on treatment, timing and selling.",
-  },
-];
-
-export const technologies = [
-  "TensorFlow",
-  "OpenCV",
-  "Scikit-learn",
-  "Machine Learning",
-  "Deep Learning",
-  "Weather APIs",
-  "Agricultural Market Data",
-];
-
 export const benefits = [
-  "Early disease identification",
-  "Better agricultural decision-making",
-  "Market awareness",
+  "Early disease awareness",
+  "Better market awareness",
   "Weather awareness",
-  "Access to welfare information",
-  "Improved farming guidance",
+  "Government welfare access",
+  "Agricultural guidance",
 ];
 
 export const footerNav = [
   { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
+  { label: "Benefits", href: "#benefits" },
   { label: "Crops", href: "#crops" },
-  { label: "Schemes", href: "#schemes" },
-  { label: "About", href: "#about" },
 ];
 
 export const footerServices = [

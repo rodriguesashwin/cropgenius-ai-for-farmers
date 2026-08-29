@@ -7,7 +7,7 @@ import { primaryNav, secondaryNav, type DashboardNavItem } from "@/data/dashboar
 
 type SidebarProps = {
   collapsed?: boolean;
-  onNavigate?: () => void;
+  onNavigate?: (() => void) | undefined;
 };
 
 function NavLink({

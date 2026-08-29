@@ -95,6 +95,17 @@
     transparent
   );
   --gradient-field: linear-gradient(135deg, var(--primary-deep), var(--primary));
+  --overlay-auth: linear-gradient(
+    115deg,
+    color-mix(in oklab, var(--primary-deep) 88%, transparent),
+    color-mix(in oklab, var(--primary-deep) 45%, transparent) 60%,
+    color-mix(in oklab, var(--primary-deep) 20%, transparent)
+  );
+  --overlay-cta: linear-gradient(
+    100deg,
+    color-mix(in oklab, var(--primary-deep) 88%, transparent),
+    color-mix(in oklab, var(--primary-deep) 70%, transparent)
+  );
   --shadow-card:
     0 1px 2px oklch(0.3 0.05 152 / 0.06), 0 12px 28px -14px oklch(0.3 0.05 152 / 0.22);
   --shadow-lift: 0 2px 4px oklch(0.3 0.05 152 / 0.08), 0 24px 44px -20px oklch(0.3 0.05 152 / 0.3);
@@ -222,6 +233,62 @@
 
 @utility animate-rise {
   animation: cg-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-reveal {
+  animation: cg-reveal 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility highlight-word {
+  position: relative;
+  display: inline-block;
+  padding-inline: 0.12em;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0.04em;
+    z-index: -1;
+    height: 0.32em;
+    width: 100%;
+    border-radius: 0.2em;
+    background: linear-gradient(90deg, var(--primary-glow), var(--accent));
+    opacity: 0.55;
+    transform-origin: left;
+    animation: cg-highlight 900ms 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+.auth-form .auth-stagger {
+  animation: cg-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.auth-form .auth-stagger:nth-child(1) { animation-delay: 240ms; }
+.auth-form .auth-stagger:nth-child(2) { animation-delay: 300ms; }
+.auth-form .auth-stagger:nth-child(3) { animation-delay: 360ms; }
+.auth-form .auth-stagger:nth-child(4) { animation-delay: 420ms; }
+.auth-form .auth-stagger:nth-child(5) { animation-delay: 480ms; }
+.auth-form .auth-stagger:nth-child(6) { animation-delay: 540ms; }
+.auth-form .auth-stagger:nth-child(7) { animation-delay: 600ms; }
+.auth-form .auth-stagger:nth-child(8) { animation-delay: 660ms; }
+
+@keyframes cg-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cg-highlight {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 @keyframes cg-rise {

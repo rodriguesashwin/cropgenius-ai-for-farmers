@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, Sprout, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -52,10 +53,12 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button variant="ghost" className="text-foreground">
-            Login
+          <Button variant="ghost" className="text-foreground" asChild>
+            <Link to="/login">Login</Link>
           </Button>
-          <Button>Get Started</Button>
+          <Button asChild>
+            <Link to="/register">Get Started</Link>
+          </Button>
         </div>
 
         <button
@@ -83,8 +86,12 @@ export function Navbar() {
               </a>
             ))}
             <div className="mt-3 flex flex-col gap-2">
-              <Button variant="outline">Login</Button>
-              <Button>Get Started</Button>
+              <Button variant="outline" asChild>
+                <Link to="/login">Login</Link>
+              </Button>
+              <Button asChild>
+                <Link to="/register">Get Started</Link>
+              </Button>
             </div>
           </div>
         </div>

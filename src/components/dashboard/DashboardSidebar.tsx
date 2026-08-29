@@ -19,7 +19,7 @@ function NavLink({
   item: DashboardNavItem;
   collapsed: boolean;
   active: boolean;
-  onNavigate?: () => void;
+  onNavigate?: (() => void) | undefined;
 }) {
   const Icon = item.icon;
   return (

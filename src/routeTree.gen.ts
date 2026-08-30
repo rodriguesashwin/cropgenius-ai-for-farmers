@@ -20,6 +20,7 @@ import { Route as PricePredictionRouteImport } from './routes/price-prediction'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as WeatherRouteImport } from './routes/weather'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const SchemesRoute = SchemesRouteImport.update({
   path: '/schemes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WeatherRoute = WeatherRouteImport.update({
   id: '/weather',
   path: '/weather',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/schemes': typeof SchemesRoute
+  '/settings': typeof SettingsRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/schemes': typeof SchemesRoute
+  '/settings': typeof SettingsRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/schemes': typeof SchemesRoute
+  '/settings': typeof SettingsRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/schemes'
+    | '/settings'
     | '/weather'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/schemes'
+    | '/settings'
     | '/weather'
   id:
     | '__root__'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/schemes'
+    | '/settings'
     | '/weather'
   fileRoutesById: FileRoutesById
 }
@@ -183,6 +195,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
   SchemesRoute: typeof SchemesRoute
+  SettingsRoute: typeof SettingsRoute
   WeatherRoute: typeof WeatherRoute
 }
 
@@ -265,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SchemesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/weather': {
       id: '/weather'
       path: '/weather'
@@ -287,6 +307,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
   SchemesRoute: SchemesRoute,
+  SettingsRoute: SettingsRoute,
   WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport

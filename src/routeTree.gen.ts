@@ -10,12 +10,42 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as CooperativeRouteImport } from './routes/cooperative'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DiseaseDetectionRouteImport } from './routes/disease-detection'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MarketRouteImport } from './routes/market'
+import { Route as PricePredictionRouteImport } from './routes/price-prediction'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as WeatherRouteImport } from './routes/weather'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CooperativeRoute = CooperativeRouteImport.update({
+  id: '/cooperative',
+  path: '/cooperative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiseaseDetectionRoute = DiseaseDetectionRouteImport.update({
+  id: '/disease-detection',
+  path: '/disease-detection',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -23,40 +53,150 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricePredictionRoute = PricePredictionRouteImport.update({
+  id: '/price-prediction',
+  path: '/price-prediction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SchemesRoute = SchemesRouteImport.update({
+  id: '/schemes',
+  path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/cooperative': typeof CooperativeRoute
+  '/dashboard': typeof DashboardRoute
+  '/disease-detection': typeof DiseaseDetectionRoute
   '/login': typeof LoginRoute
+  '/market': typeof MarketRoute
+  '/price-prediction': typeof PricePredictionRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/schemes': typeof SchemesRoute
+  '/settings': typeof SettingsRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/cooperative': typeof CooperativeRoute
+  '/dashboard': typeof DashboardRoute
+  '/disease-detection': typeof DiseaseDetectionRoute
   '/login': typeof LoginRoute
+  '/market': typeof MarketRoute
+  '/price-prediction': typeof PricePredictionRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/schemes': typeof SchemesRoute
+  '/settings': typeof SettingsRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/cooperative': typeof CooperativeRoute
+  '/dashboard': typeof DashboardRoute
+  '/disease-detection': typeof DiseaseDetectionRoute
   '/login': typeof LoginRoute
+  '/market': typeof MarketRoute
+  '/price-prediction': typeof PricePredictionRoute
+  '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
+  '/schemes': typeof SchemesRoute
+  '/settings': typeof SettingsRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/cooperative'
+    | '/dashboard'
+    | '/disease-detection'
+    | '/login'
+    | '/market'
+    | '/price-prediction'
+    | '/profile'
+    | '/register'
+    | '/schemes'
+    | '/settings'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register'
-  id: '__root__' | '/' | '/login' | '/register'
+  to:
+    | '/'
+    | '/assistant'
+    | '/cooperative'
+    | '/dashboard'
+    | '/disease-detection'
+    | '/login'
+    | '/market'
+    | '/price-prediction'
+    | '/profile'
+    | '/register'
+    | '/schemes'
+    | '/settings'
+    | '/weather'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/cooperative'
+    | '/dashboard'
+    | '/disease-detection'
+    | '/login'
+    | '/market'
+    | '/price-prediction'
+    | '/profile'
+    | '/register'
+    | '/schemes'
+    | '/settings'
+    | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssistantRoute: typeof AssistantRoute
+  CooperativeRoute: typeof CooperativeRoute
+  DashboardRoute: typeof DashboardRoute
+  DiseaseDetectionRoute: typeof DiseaseDetectionRoute
   LoginRoute: typeof LoginRoute
+  MarketRoute: typeof MarketRoute
+  PricePredictionRoute: typeof PricePredictionRoute
+  ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
+  SchemesRoute: typeof SchemesRoute
+  SettingsRoute: typeof SettingsRoute
+  WeatherRoute: typeof WeatherRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +208,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cooperative': {
+      id: '/cooperative'
+      path: '/cooperative'
+      fullPath: '/cooperative'
+      preLoaderRoute: typeof CooperativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disease-detection': {
+      id: '/disease-detection'
+      path: '/disease-detection'
+      fullPath: '/disease-detection'
+      preLoaderRoute: typeof DiseaseDetectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/price-prediction': {
+      id: '/price-prediction'
+      path: '/price-prediction'
+      fullPath: '/price-prediction'
+      preLoaderRoute: typeof PricePredictionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -82,13 +271,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/schemes': {
+      id: '/schemes'
+      path: '/schemes'
+      fullPath: '/schemes'
+      preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssistantRoute: AssistantRoute,
+  CooperativeRoute: CooperativeRoute,
+  DashboardRoute: DashboardRoute,
+  DiseaseDetectionRoute: DiseaseDetectionRoute,
   LoginRoute: LoginRoute,
+  MarketRoute: MarketRoute,
+  PricePredictionRoute: PricePredictionRoute,
+  ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
+  SchemesRoute: SchemesRoute,
+  SettingsRoute: SettingsRoute,
+  WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

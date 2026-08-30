@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as CooperativeRouteImport } from './routes/cooperative'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DiseaseDetectionRouteImport } from './routes/disease-detection'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MarketRouteImport } from './routes/market'
@@ -33,6 +34,11 @@ const AssistantRoute = AssistantRouteImport.update({
 const CooperativeRoute = CooperativeRouteImport.update({
   id: '/cooperative',
   path: '/cooperative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiseaseDetectionRoute = DiseaseDetectionRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/cooperative': typeof CooperativeRoute
+  '/dashboard': typeof DashboardRoute
   '/disease-detection': typeof DiseaseDetectionRoute
   '/login': typeof LoginRoute
   '/market': typeof MarketRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/cooperative': typeof CooperativeRoute
+  '/dashboard': typeof DashboardRoute
   '/disease-detection': typeof DiseaseDetectionRoute
   '/login': typeof LoginRoute
   '/market': typeof MarketRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/cooperative': typeof CooperativeRoute
+  '/dashboard': typeof DashboardRoute
   '/disease-detection': typeof DiseaseDetectionRoute
   '/login': typeof LoginRoute
   '/market': typeof MarketRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/cooperative'
+    | '/dashboard'
     | '/disease-detection'
     | '/login'
     | '/market'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/cooperative'
+    | '/dashboard'
     | '/disease-detection'
     | '/login'
     | '/market'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/assistant'
     | '/cooperative'
+    | '/dashboard'
     | '/disease-detection'
     | '/login'
     | '/market'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   CooperativeRoute: typeof CooperativeRoute
+  DashboardRoute: typeof DashboardRoute
   DiseaseDetectionRoute: typeof DiseaseDetectionRoute
   LoginRoute: typeof LoginRoute
   MarketRoute: typeof MarketRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/cooperative'
       fullPath: '/cooperative'
       preLoaderRoute: typeof CooperativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/disease-detection': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   CooperativeRoute: CooperativeRoute,
+  DashboardRoute: DashboardRoute,
   DiseaseDetectionRoute: DiseaseDetectionRoute,
   LoginRoute: LoginRoute,
   MarketRoute: MarketRoute,

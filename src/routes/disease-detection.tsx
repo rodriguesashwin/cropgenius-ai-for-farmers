@@ -174,7 +174,9 @@ function DiseaseDetectionPage() {
                     <Label htmlFor="crop-select">Select Crop (Optional)</Label>
                     <Select value={crop} onValueChange={setCrop}>
                       <SelectTrigger id="crop-select" className="w-full sm:max-w-xs">
-                        <SelectValue />
+                        <SelectValue placeholder="Select a crop">
+                          {crop === "auto" ? "Not sure? Let CropGenius identify it" : crop}
+                        </SelectValue>
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="auto">

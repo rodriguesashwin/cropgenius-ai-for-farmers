@@ -9,7 +9,7 @@ export function CurrentWeatherCard({
   current,
 }: {
   location: string | null;
-  current?: WeatherCurrent | null;
+  current?: WeatherCurrent | null | undefined;
 }) {
   return (
     <section className="animate-rise rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] sm:p-6">

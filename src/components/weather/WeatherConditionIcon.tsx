@@ -27,8 +27,8 @@ export function WeatherConditionIcon({
   condition,
   className,
 }: {
-  condition?: string | null;
-  className?: string;
+  condition?: string | null | undefined;
+  className?: string | undefined;
 }) {
   const Icon = iconForCondition(condition);
   return <Icon className={cn("size-6", className)} aria-hidden="true" />;

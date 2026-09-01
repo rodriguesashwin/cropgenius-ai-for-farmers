@@ -2,7 +2,7 @@ import { Droplets, Gauge, Thermometer, Wind } from "lucide-react";
 
 import { PLACEHOLDER, type WeatherCurrent } from "@/data/weather";
 
-export function WeatherStats({ current }: { current?: WeatherCurrent | null }) {
+export function WeatherStats({ current }: { current?: WeatherCurrent | null | undefined }) {
   const stats = [
     {
       label: "Humidity",

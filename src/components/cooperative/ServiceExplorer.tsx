@@ -7,6 +7,7 @@ import {
   Filter,
   Handshake,
   Info,
+  FileText,
   Search,
   UsersRound,
   X,
@@ -23,6 +24,7 @@ import {
   availabilityOptions,
   categoryIcons,
   demoCooperatives,
+  demoServices,
   emptyFilters,
   filterServices,
   serviceCategories,
@@ -604,3 +606,225 @@ export function filterServicesForView(services: CooperativeService[], filters: C
 }
 
 export { emptyFilters, getCooperativeName, demoCooperatives };
+
+export function MyRequests({
+  requests,
+  onExplore,
+  onView,
+}: {
+  requests: ServiceRequest[];
+  onExplore: () => void;
+  onView: (requestId: string) => void;
+}) {
+  return (
+    <Card className="border-border/80 shadow-[var(--shadow-card)]">
+      <CardHeader>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <CardTitle className="font-display text-xl">My Service Requests</CardTitle>
+            <p className="mt-1 text-sm text-muted-foreground">Track requests recorded in CropGenius.</p>
+          </div>
+          <Button variant="outline" className="min-h-11 self-start" onClick={onExplore}>
+            Explore Cooperative Services
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent>
+        {requests.length === 0 ? (
+          <EmptyState
+            title="You haven't submitted any service requests yet."
+            description="Explore Cooperative Services to find support and submit a request for review."
+            action={<Button onClick={onExplore}>Explore Cooperative Services</Button>}
+          />
+        ) : (
+          <div className="space-y-3">
+            {requests.map((request) => (
+              <div key={request.id} className="grid gap-3 rounded-xl border border-border p-4 sm:grid-cols-[1fr_auto] sm:items-center">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="font-semibold text-foreground">{request.id}</p>
+                    <StatusBadge status={request.status} />
+                  </div>
+                  <p className="mt-2 text-sm text-foreground">{demoServices.find((service) => service.id === request.serviceId)?.name ?? "Cooperative service"}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {getCooperativeName(request.cooperativeId)} · {request.submittedAt}
+                  </p>
+                </div>
+                <Button variant="outline" className="min-h-11" onClick={() => onView(request.id)}>
+                  View Details
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+export function RequestDetails({
+  request,
+  onBack,
+}: {
+  request: ServiceRequest;
+  onBack: () => void;
+}) {
+  const service = demoServices.find((item) => item.id === request.serviceId);
+  return (
+    <section className="space-y-5">
+      <Button variant="outline" onClick={onBack} className="min-h-11">
+        Back to My Requests
+      </Button>
+      <Card className="border-border/80 shadow-[var(--shadow-card)]">
+        <CardHeader>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-primary">{request.id}</p>
+              <CardTitle className="mt-1 font-display text-2xl">{service?.name ?? "Cooperative Service Request"}</CardTitle>
+              <p className="mt-2 text-sm text-muted-foreground">{getCooperativeName(request.cooperativeId)} · {request.submittedAt}</p>
+            </div>
+            <StatusBadge status={request.status} />
+          </div>
+        </CardHeader>
+        <CardContent className="grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
+          <div className="rounded-xl border border-border bg-muted/20 p-4">
+            <SectionHeading icon={ClipboardList} title="Request Progress" />
+            <div className="mt-4">
+              <ProgressTimeline status={request.status} />
+            </div>
+          </div>
+          <div className="rounded-xl border border-border p-4">
+            <SectionHeading icon={FileText} title="Notes / Updates" description="Updates will be populated by the backend later." />
+            <div className="mt-4 space-y-3">
+              {request.updates.map((update) => (
+                <div key={`${update.date}-${update.message}`} className="rounded-lg bg-muted/30 p-3">
+                  <p className="text-xs font-semibold text-primary">{update.date}</p>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{update.message}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+export function CooperativeDirectory({
+  cooperatives,
+  location,
+  onLocationChange,
+  onView,
+}: {
+  cooperatives: Cooperative[];
+  location: string;
+  onLocationChange: (location: string) => void;
+  onView: (cooperativeId: string) => void;
+}) {
+  const visible = cooperatives.filter((coop) => coop.location.toLowerCase().includes(location.trim().toLowerCase()));
+  return (
+    <Card className="border-border/80 shadow-[var(--shadow-card)]">
+      <CardHeader>
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <CardTitle className="font-display text-xl">Cooperative Societies</CardTitle>
+            <p className="mt-1 text-sm text-muted-foreground">Sample directory records for UI review only.</p>
+          </div>
+          <div className="w-full space-y-2 md:max-w-xs">
+            <Label htmlFor="directory-location">Filter by location</Label>
+            <Input
+              id="directory-location"
+              value={location}
+              onChange={(event) => onLocationChange(event.target.value.slice(0, 80))}
+              placeholder="Enter a location"
+              className="min-h-11"
+            />
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        {visible.length === 0 ? (
+          <EmptyState title="No cooperative societies found for the selected location." description="Clear the location or try another nearby area." />
+        ) : (
+          <div className="grid gap-4 lg:grid-cols-3">
+            {visible.map((coop) => (
+              <div key={coop.id} className="flex flex-col rounded-xl border border-border bg-card p-4">
+                <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Building2 className="size-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 font-display text-lg font-semibold text-foreground">{coop.name}</h3>
+                <p className="mt-1 text-sm font-medium text-primary">{coop.location}</p>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{coop.description}</p>
+                <p className="mt-3 text-xs text-muted-foreground">{coop.contactInformation}</p>
+                <Button className="mt-4 min-h-11 w-full" variant="outline" onClick={() => onView(coop.id)}>
+                  View Cooperative
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+export function CooperativeDetails({
+  cooperative,
+  services,
+  onExploreService,
+  onBack,
+}: {
+  cooperative: Cooperative;
+  services: CooperativeService[];
+  onExploreService: (serviceId: string) => void;
+  onBack: () => void;
+}) {
+  const offered = services.filter((service) => cooperative.services.includes(service.id));
+  return (
+    <section className="space-y-5">
+      <Button variant="outline" onClick={onBack} className="min-h-11">
+        Back to Cooperative Societies
+      </Button>
+      <Card className="border-border/80 shadow-[var(--shadow-card)]">
+        <CardHeader>
+          <div className="flex items-start gap-4">
+            <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+              <Building2 className="size-6" aria-hidden="true" />
+            </span>
+            <div>
+              <Badge variant="outline" className="mb-2">Sample cooperative record</Badge>
+              <CardTitle className="font-display text-2xl">{cooperative.name}</CardTitle>
+              <p className="mt-1 text-sm font-medium text-primary">{cooperative.location}</p>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="grid gap-5 lg:grid-cols-2">
+          <InfoBlock title="About" items={[cooperative.description]} icon={Info} />
+          <InfoBlock title="Available Support" items={cooperative.availableSupport} icon={Handshake} />
+          <InfoBlock title="Contact Information" items={[cooperative.contactInformation]} icon={Building2} />
+          <InfoBlock title="Operating Information" items={[cooperative.operatingInformation]} icon={Info} />
+          <div className="lg:col-span-2 rounded-xl border border-border p-4">
+            <SectionHeading icon={ClipboardList} title="Services Offered" />
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {offered.map((service) => (
+                <button
+                  key={service.id}
+                  type="button"
+                  onClick={() => onExploreService(service.id)}
+                  className="flex items-center justify-between gap-3 rounded-xl border border-border p-4 text-left transition-colors hover:border-primary/40 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span>
+                    <span className="block font-semibold text-foreground">{service.name}</span>
+                    <span className="mt-1 block text-xs text-muted-foreground">{service.category}</span>
+                  </span>
+                  <ArrowRight className="size-4 shrink-0 text-primary" aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  );
+}

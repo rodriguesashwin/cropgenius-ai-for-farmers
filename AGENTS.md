@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep each standalone dashboard module's route, typed data/service boundary, and UI components in feature-specific files so changes stay isolated from completed modules.

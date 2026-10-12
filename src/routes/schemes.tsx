@@ -8,7 +8,6 @@ import { SchemeDetailsDialog } from "@/components/government-schemes/SchemeDetai
 import { SchemeFilters } from "@/components/government-schemes/SchemeFilters";
 import { SchemeFinder } from "@/components/government-schemes/SchemeFinder";
 import { EmptyState, SchemeErrorState, SchemeLoadingState } from "@/components/government-schemes/SchemeStates";
-import { Button } from "@/components/ui/button";
 import {
   emptySchemeFilters,
   type GovernmentScheme,
@@ -27,7 +26,7 @@ export const Route = createFileRoute("/schemes")({
       { title },
       { name: "description", content: page.description },
       { property: "og:title", content: title },
-      { property: "og:description", content: page.description },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

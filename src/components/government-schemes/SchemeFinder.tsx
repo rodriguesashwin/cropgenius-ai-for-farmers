@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, ChevronDown, Search, Sparkles, UserRound } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { SchemeCard } from "@/components/government-schemes/SchemeCard";
 import { Button } from "@/components/ui/button";
@@ -98,7 +99,7 @@ export function SchemeFinder({
   </section>;
 }
 
-function FinderField({ id, label, children }: { id: string; label: string; children: React.ReactNode }) {
+function FinderField({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return <div className="space-y-2"><Label htmlFor={id}>{label}</Label>{children}</div>;
 }
 

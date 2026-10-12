@@ -1,4 +1,6 @@
 import { ExternalLink, FileCheck2, FileText, Info, Landmark, ListChecks, MapPin, Sprout, UsersRound } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -41,9 +43,9 @@ export function SchemeDetailsDialog({ scheme, onClose }: {
 }
 
 function DetailSection({ icon: Icon, title, children }: {
-  icon: typeof Sprout;
+  icon: LucideIcon;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return <section className="border-t border-border pt-4">
     <h3 className="flex items-center gap-2 font-display font-semibold"><Icon className="size-4 text-primary" aria-hidden="true" />{title}</h3>

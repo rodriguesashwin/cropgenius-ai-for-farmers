@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, ChevronDown, Search, Sparkles, UserRound } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { SchemeCard } from "@/components/government-schemes/SchemeCard";
 import { Button } from "@/components/ui/button";
@@ -98,11 +99,11 @@ export function SchemeFinder({
   </section>;
 }
 
-function FinderField({ id, label, children }: { id: string; label: string; children: React.ReactNode }) {
+function FinderField({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return <div className="space-y-2"><Label htmlFor={id}>{label}</Label>{children}</div>;
 }
 
-function FieldError({ id, message }: { id: string; message?: string }) {
+function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   return message ? <p id={id} role="alert" className="text-xs font-medium text-destructive">{message}</p> : null;
 }
 
@@ -112,7 +113,7 @@ function CheckboxGroup({ title, description, items, selected, onToggle, error }:
   items: readonly string[];
   selected: string[];
   onToggle: (item: string, checked: boolean) => void;
-  error?: string;
+  error?: string | undefined;
 }) {
   const id = title === "Crops grown" ? "scheme-crops" : "scheme-interests";
   return <fieldset className="space-y-3" aria-describedby={error ? `${id}-error` : undefined}>

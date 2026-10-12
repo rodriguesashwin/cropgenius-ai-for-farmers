@@ -103,7 +103,7 @@ function FinderField({ id, label, children }: { id: string; label: string; child
   return <div className="space-y-2"><Label htmlFor={id}>{label}</Label>{children}</div>;
 }
 
-function FieldError({ id, message }: { id: string; message?: string }) {
+function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   return message ? <p id={id} role="alert" className="text-xs font-medium text-destructive">{message}</p> : null;
 }
 
@@ -113,7 +113,7 @@ function CheckboxGroup({ title, description, items, selected, onToggle, error }:
   items: readonly string[];
   selected: string[];
   onToggle: (item: string, checked: boolean) => void;
-  error?: string;
+  error?: string | undefined;
 }) {
   const id = title === "Crops grown" ? "scheme-crops" : "scheme-interests";
   return <fieldset className="space-y-3" aria-describedby={error ? `${id}-error` : undefined}>

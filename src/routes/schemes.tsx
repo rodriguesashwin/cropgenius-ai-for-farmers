@@ -24,7 +24,7 @@ export const Route = createFileRoute("/schemes")({
   head: () => ({
     meta: [
       { title },
-      { name: "description", content: page.description },
+      { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },

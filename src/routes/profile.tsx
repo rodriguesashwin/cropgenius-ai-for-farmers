@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ChevronRight, MapPin, Save, Sprout, UserRound } from "lucide-react";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
@@ -87,6 +87,6 @@ function ProfilePage() {
 }
 
 const inputClass = "min-h-10 w-full rounded-xl border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring";
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return <label className="block space-y-1.5 text-sm font-medium text-foreground"><span>{label}</span>{children}</label>;
 }

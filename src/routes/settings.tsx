@@ -31,7 +31,7 @@ function SettingsPage() {
     try { window.localStorage.setItem(storageKey, JSON.stringify(preferences)); setSaved(true); }
     catch { setSaved(false); }
   }
-  function reset() { setPreferences(defaults); setSaved(false); }
+  function reset() { setPreferences(defaults); setSaved(false); try { window.localStorage.setItem(storageKey, JSON.stringify(defaults)); } catch { /* Defaults remain active for this page. */ } }
   return (
     <DashboardShell title="Settings">
       <div className="animate-rise space-y-6">

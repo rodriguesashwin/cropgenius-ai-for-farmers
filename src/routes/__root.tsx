@@ -132,6 +132,20 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    const updateDocumentLanguage = () => {
+      const language = readAppLanguage();
+      document.documentElement.lang = language === "Kannada" ? "kn" : language === "Hindi" ? "hi" : "en";
+    };
+    updateDocumentLanguage();
+    window.addEventListener("storage", updateDocumentLanguage);
+    window.addEventListener("cropgenius-language-change", updateDocumentLanguage);
+    return () => {
+      window.removeEventListener("storage", updateDocumentLanguage);
+      window.removeEventListener("cropgenius-language-change", updateDocumentLanguage);
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

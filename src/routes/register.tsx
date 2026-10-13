@@ -73,7 +73,23 @@ function RegisterPage() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    toast.info("Registration will be connected to the CropGenius backend in the next phase.");
+    const form = event.currentTarget;
+    const passwordInput = form.elements.namedItem("password");
+    const confirmInput = form.elements.namedItem("confirmPassword");
+    if (!(passwordInput instanceof HTMLInputElement) || !(confirmInput instanceof HTMLInputElement)) return;
+    if (passwordInput.value.length < 8) {
+      passwordInput.setCustomValidity("Use at least 8 characters for your password.");
+      passwordInput.reportValidity();
+      passwordInput.setCustomValidity("");
+      return;
+    }
+    if (passwordInput.value !== confirmInput.value) {
+      confirmInput.setCustomValidity("Passwords do not match.");
+      confirmInput.reportValidity();
+      confirmInput.setCustomValidity("");
+      return;
+    }
+    toast.info("The form is valid. Account creation is not active until the backend is connected.");
   };
 
   return (
@@ -119,6 +135,7 @@ function RegisterPage() {
               name="password"
               autoComplete="new-password"
               required
+              minLength={8}
               placeholder="Create a password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -148,6 +165,7 @@ function RegisterPage() {
             name="confirmPassword"
             autoComplete="new-password"
             required
+            minLength={8}
             placeholder="Re-enter your password"
           />
 

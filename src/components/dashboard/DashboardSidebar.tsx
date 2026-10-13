@@ -3,6 +3,7 @@ import { LogOut, Sprout } from "lucide-react";
 import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
+import { useAppLanguage } from "@/lib/language";
 import { primaryNav, secondaryNav, type DashboardNavItem } from "@/data/dashboard";
 
 type SidebarProps = {
@@ -26,7 +27,7 @@ function NavLink({
     <Link
       to={item.to}
       onClick={onNavigate}
-      title={collapsed ? item.label : undefined}
+      title={collapsed ? t(item.label) : undefined}
       className={cn(
         "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors duration-200",
         collapsed && "justify-center px-0",
@@ -42,13 +43,14 @@ function NavLink({
         )}
         aria-hidden="true"
       />
-      {!collapsed && <span className="truncate">{item.label}</span>}
+      {!collapsed && <span className="truncate">{t(item.label)}</span>}
     </Link>
   );
 }
 
 export function DashboardSidebar({ collapsed = false, onNavigate }: SidebarProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { t } = useAppLanguage();
 
   return (
     <div className="flex h-full flex-col bg-card">
@@ -67,7 +69,7 @@ export function DashboardSidebar({ collapsed = false, onNavigate }: SidebarProps
               CropGenius
             </span>
             <span className="block truncate text-[0.7rem] tracking-wide text-muted-foreground">
-              Smart Agriculture Platform
+              {t("Smart Agriculture Platform")}
             </span>
           </span>
         )}
@@ -98,7 +100,7 @@ export function DashboardSidebar({ collapsed = false, onNavigate }: SidebarProps
         <button
           type="button"
           onClick={() => toast.info("Logout will be connected to the CropGenius backend later.")}
-          title={collapsed ? "Logout" : undefined}
+          title={collapsed ? t("Logout") : undefined}
           className={cn(
             "group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive",
             collapsed && "justify-center px-0",
@@ -108,7 +110,7 @@ export function DashboardSidebar({ collapsed = false, onNavigate }: SidebarProps
             className="size-4.5 shrink-0 transition-transform duration-200 group-hover:scale-110"
             aria-hidden="true"
           />
-          {!collapsed && <span>Logout</span>}
+          {!collapsed && <span>{t("Logout")}</span>}
         </button>
       </div>
     </div>

@@ -42,7 +42,7 @@ export function DashboardHeader({ title, onToggleSidebar, onOpenDrawer }: Header
       </Button>
 
       <h1 className="truncate font-display text-base font-semibold text-foreground sm:text-lg">
-        {title}
+        {t(title)}
       </h1>
 
       <div className="ml-auto flex items-center gap-1 sm:gap-2">

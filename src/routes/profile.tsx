@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ChevronRight, MapPin, Save, Sprout, UserRound } from "lucide-react";
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
+import { setAppLanguage, type AppLanguage } from "@/lib/language";
 
 const title = "Farmer Profile | CropGenius";
 const description = "Manage your farmer profile and farm details on this device.";
@@ -38,6 +39,8 @@ function ProfilePage() {
     event.preventDefault();
     try {
       window.localStorage.setItem(storageKey, JSON.stringify(profile));
+      const language: AppLanguage = profile.language.includes("Kannada") ? "Kannada" : profile.language.includes("Hindi") ? "Hindi" : "English";
+      setAppLanguage(language);
       setSaved(true);
     } catch {
       setSaved(false);

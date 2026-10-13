@@ -51,16 +51,16 @@ function WeatherPage() {
   }, []);
 
   /**
-   * Frontend-only placeholder for the future call:
+   * Future API integration point:
    *   GET /api/weather?location=... (or ?latitude=..&longitude=..)
-   * No weather values are produced here — the UI simply waits for the service.
+   * No weather values are produced here. Until the API is connected, this flow reports that data is unavailable rather than displaying empty forecast cards as if they were real.
    */
   function requestWeather(next: string) {
     if (timer.current) clearTimeout(timer.current);
     setLocation(next);
     setData(null);
     setStage("loading");
-    timer.current = setTimeout(() => setStage("success"), 1200);
+    timer.current = setTimeout(() => setStage("error"), 300);
   }
 
   function changeLocation() {

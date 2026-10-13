@@ -19,13 +19,19 @@ function SettingsPage() {
   const [preferences, setPreferences] = useState<Preferences>(defaults);
   const [saved, setSaved] = useState(false);
   useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(storageKey);
+      if (stored) {
+        const parsed = { ...defaults, ...JSON.parse(stored) as Partial<Preferences> };
+        setPreferences(parsed);
+        const language: AppLanguage = parsed.language.includes("Kannada") ? "Kannada" : parsed.language.includes("Hindi") ? "Hindi" : readAppLanguage();
+        setAppLanguage(language);
+        return;
+      }
+    } catch { /* Keep defaults if browser storage is unavailable. */ }
     const sharedLanguage = readAppLanguage();
     const label = sharedLanguage === "Kannada" ? "ಕನ್ನಡ (Kannada)" : sharedLanguage === "Hindi" ? "हिन्दी (Hindi)" : "English";
     setPreferences((current) => ({ ...current, language: label }));
-    try {
-      const stored = window.localStorage.getItem(storageKey);
-      if (stored) setPreferences({ ...defaults, ...JSON.parse(stored) as Partial<Preferences> });
-    } catch { /* Keep defaults if browser storage is unavailable. */ }
   }, []);
   function update<K extends keyof Preferences>(key: K, value: Preferences[K]) {
     setPreferences((current) => ({ ...current, [key]: value }));
@@ -39,7 +45,7 @@ function SettingsPage() {
       setSaved(true);
     } catch { setSaved(false); }
   }
-  function reset() { setPreferences(defaults); setSaved(false); try { window.localStorage.setItem(storageKey, JSON.stringify(defaults)); } catch { /* Defaults remain active for this page. */ } }
+  function reset() { setPreferences(defaults); setSaved(false); setAppLanguage("English"); try { window.localStorage.setItem(storageKey, JSON.stringify(defaults)); } catch { /* Defaults remain active for this page. */ } }
   return (
     <DashboardShell title="Settings">
       <div className="animate-rise space-y-6">

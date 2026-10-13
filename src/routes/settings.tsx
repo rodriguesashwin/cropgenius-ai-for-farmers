@@ -19,6 +19,9 @@ function SettingsPage() {
   const [preferences, setPreferences] = useState<Preferences>(defaults);
   const [saved, setSaved] = useState(false);
   useEffect(() => {
+    const sharedLanguage = readAppLanguage();
+    const label = sharedLanguage === "Kannada" ? "ಕನ್ನಡ (Kannada)" : sharedLanguage === "Hindi" ? "हिन्दी (Hindi)" : "English";
+    setPreferences((current) => ({ ...current, language: label }));
     try {
       const stored = window.localStorage.getItem(storageKey);
       if (stored) setPreferences({ ...defaults, ...JSON.parse(stored) as Partial<Preferences> });
@@ -29,8 +32,12 @@ function SettingsPage() {
     setSaved(false);
   }
   function save() {
-    try { window.localStorage.setItem(storageKey, JSON.stringify(preferences)); setSaved(true); }
-    catch { setSaved(false); }
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify(preferences));
+      const language: AppLanguage = preferences.language.includes("Kannada") ? "Kannada" : preferences.language.includes("Hindi") ? "Hindi" : "English";
+      setAppLanguage(language);
+      setSaved(true);
+    } catch { setSaved(false); }
   }
   function reset() { setPreferences(defaults); setSaved(false); try { window.localStorage.setItem(storageKey, JSON.stringify(defaults)); } catch { /* Defaults remain active for this page. */ } }
   return (

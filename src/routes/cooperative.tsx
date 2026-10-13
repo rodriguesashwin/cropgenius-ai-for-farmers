@@ -58,7 +58,8 @@ function FeatureRoute() {
   const [stage, setStage] = useState<CooperativeStage>("loading");
   const [services, setServices] = useState<CooperativeService[]>([]);
   const [cooperatives, setCooperatives] = useState<Cooperative[]>([]);
-  const [requests, setRequests] = useState<ServiceRequest[]>([]);\n  const [isDemo, setIsDemo] = useState(true);
+  const [requests, setRequests] = useState<ServiceRequest[]>([]);
+  const [isDemo, setIsDemo] = useState(true);
   const [filters, setFilters] = useState<CooperativeFilters>(emptyFilters);
   const [directoryLocation, setDirectoryLocation] = useState("");
   const [activeTab, setActiveTab] = useState<Tab>("services");
@@ -70,7 +71,8 @@ function FeatureRoute() {
       const payload = await loadCooperativeDashboard();
       setServices(payload.services);
       setCooperatives(payload.cooperatives);
-      setRequests(payload.requests);\n      setIsDemo(payload.isDemo);
+      setRequests(payload.requests);
+      setIsDemo(payload.isDemo);
       setStage("ready");
     } catch {
       setStage("error");
@@ -128,7 +130,13 @@ function FeatureRoute() {
           </p>
         </header>
 
-        <CooperativeIntroCard />\n\n        {isDemo ? (\n          <div className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 text-sm leading-relaxed text-muted-foreground">\n            <strong className="text-foreground">Preview data:</strong> cooperative listings and requests are stored locally for this frontend demo. Submitting a request here does not send it to a real cooperative.\n          </div>\n        ) : null}
+        <CooperativeIntroCard />
+
+        {isDemo ? (
+          <div className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-4 text-sm leading-relaxed text-muted-foreground">
+            <strong className="text-foreground">Preview data:</strong> cooperative listings and requests are stored locally for this frontend demo. Submitting a request here does not send it to a real cooperative.
+          </div>
+        ) : null}
 
         {stage === "loading" ? <CooperativeLoadingState /> : null}
         {stage === "error" ? <CooperativeErrorState onRetry={() => void load()} /> : null}

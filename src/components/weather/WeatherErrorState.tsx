@@ -18,10 +18,10 @@ export function WeatherErrorState({
         <AlertTriangle className="size-7" aria-hidden="true" />
       </span>
       <h3 className="mt-4 font-display text-xl font-semibold text-foreground">
-        Unable to fetch weather data
+        Weather data service is not connected
       </h3>
       <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-        We couldn&apos;t retrieve weather information right now. Please try again.
+        Connect the weather API to show live conditions and forecasts. No weather values are being displayed as real data in this preview.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         <Button onClick={onRetry} className="min-h-11">

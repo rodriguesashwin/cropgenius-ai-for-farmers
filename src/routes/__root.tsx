@@ -12,6 +12,7 @@ import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { readAppLanguage } from "@/lib/language";
 
 function NotFoundComponent() {
   return (
@@ -130,6 +131,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const updateDocumentLanguage = () => {
+      const language = readAppLanguage();
+      document.documentElement.lang = language === "Kannada" ? "kn" : language === "Hindi" ? "hi" : "en";
+    };
+    updateDocumentLanguage();
+    window.addEventListener("storage", updateDocumentLanguage);
+    window.addEventListener("cropgenius-language-change", updateDocumentLanguage);
+    return () => {
+      window.removeEventListener("storage", updateDocumentLanguage);
+      window.removeEventListener("cropgenius-language-change", updateDocumentLanguage);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
